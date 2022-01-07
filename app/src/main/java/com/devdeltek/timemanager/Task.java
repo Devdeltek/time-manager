@@ -1,14 +1,14 @@
 package com.devdeltek.timemanager;
 
-import org.joda.time.DateTime;
-import java.util.Date;
+import org.joda.time.LocalTime;
+import org.joda.time.Period;
 
 public class Task {
 
     private String mTitle;
 
-    private DateTime mStartTime;
-    private DateTime mTotalTime;
+    private LocalTime mStartTime;
+    private Period mTotalTime;
 
     private int mRepeat;
 
@@ -20,7 +20,7 @@ public class Task {
 
     private boolean mComplete;
 
-    public Task(String title, DateTime startTime, DateTime totalTime, int repeat, String notes, String[] goals, int[] days){
+    public Task(String title, LocalTime startTime, Period totalTime, int repeat, String notes, String[] goals, int[] days){
         mTitle = title;
         mStartTime = startTime;
         mTotalTime = totalTime;
@@ -39,19 +39,19 @@ public class Task {
         this.mTitle = mTitle;
     }
 
-    public DateTime getmStartTime() {
+    public LocalTime getmStartTime() {
         return mStartTime;
     }
 
-    public void setmStartTime(DateTime mStartTime) {
+    public void setmStartTime(LocalTime mStartTime) {
         this.mStartTime = mStartTime;
     }
 
-    public DateTime getmEndTime() {
+    public Period getmTotalTime() {
         return mTotalTime;
     }
 
-    public void setmEndTime(DateTime mTotalTime) {
+    public void setmTotalTime(Period mTotalTime) {
         this.mTotalTime = mTotalTime;
     }
 
@@ -73,6 +73,10 @@ public class Task {
 
     public String[] getmGoals() {
         return mGoals;
+    }
+
+    public LocalTime getEndTime(){
+        return mStartTime.plus(mTotalTime);
     }
 
     public void setmNotes(String mNotes) {
